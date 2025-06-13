@@ -49,29 +49,42 @@
 
         /* Header */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 25px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background-color: rgba(253, 241, 241, 0.98);
-            transition: var(--transition);
-        }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px; /* Padding réduit en haut pour compenser la taille du logo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background-color: rgba(253, 241, 241, 0.98);
+    transition: var(--transition);
+}
+
 
         header.scrolled {
             padding: 15px 40px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
+
+
+        header.scrolled .logo img {
+    height: 60px; /* Taille légèrement réduite quand le header est scrollé */
+}
+
+
         .logo {
             font-size: 1.8rem;
             text-decoration: none;
             color: var(--primary-color);
         }
+
+        .logo img {
+    height: 70px; /* Taille augmentée de 50px à 70px */
+    transition: var(--transition);
+}
 
         .main-nav {
             display: flex;
@@ -540,6 +553,26 @@
             box-shadow: 0 5px 15px rgba(255, 90, 164, 0.3);
         }
 
+        /* Messages du formulaire */
+        #form-messages {
+            display: none;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        #form-messages.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        #form-messages.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
         /* Footer */
         footer {
             background-color: var(--primary-color);
@@ -672,12 +705,21 @@
                 height: 180px;
             }
         }
+
+        /* Dans la partie mobile (media queries) */
+@media (max-width: 768px) {
+    .logo img {
+        height: 60px; /* Taille légèrement réduite sur mobile */
+    }
+}
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <a href="#" class="logo">SATISFETE</a>
+        <a href="#" class="logo">
+            <img src="logo.png" alt="SATISFETE Logo">
+        </a>
         <nav class="main-nav">
             <a href="#home">Accueil</a>
             <a href="#about">À propos</a>
@@ -726,11 +768,12 @@
                 <div class="about-text">
                     <p>Découvrez SATISFETE, le partenaire incontournable des événements d'exception. En tant que spécialiste de l'organisation complète d'événements, notre objectif est de transformer chaque occasion en un moment mémorable.</p>
                     <p>Chaque détail est soigneusement pensé pour créer une expérience sans pareille. L'élégance, la créativité et le professionnalisme sont au cœur de notre approche chez SATISFETE.</p>
-                    <p>Derrière SATISFETE se trouve Radia, une professionnelle passionnée par la création d'expériences uniques. Avec son équipe dévouée, elle s'engage à rendre chaque événement spécial et inoubliable.</p>
+                    <p>Derrière SATISFETE se trouve Radia, une professionnelle passionnée par la création d'expériences uniques. Avec son équipe dévouée, elle s'engage à rendre chaque événement spécial et inoubliable.
+                        À ses côtés, Thomas, son mari, s'occupe de la location de matériel événementiel, apportant tout le nécessaire pour sublimer chaque mise en scène avec fiabilité et élégance.</p>
                 </div>
                 <div class="about-image">
                     <div class="avatar-container">
-                        <img src="face.png" alt="Radia - Fondatrice de SATISFETE" class="avatar">
+                        <img src="face1.png" alt="Radia - Fondatrice de SATISFETE" class="avatar">
                     </div>
                 </div>
             </div>
@@ -848,7 +891,7 @@
                     <div class="contact-details">
                         <div>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>123 Avenue des Événements, Paris</span>
+                            <span>61 rue Camille Guillaume, 91270 Vigneux-sur-Seine</span>
                         </div>
                         <div>
                             <i class="fas fa-phone"></i>
@@ -861,7 +904,7 @@
                     </div>
                 </div>
                 
-                <form class="contact-form">
+                <form class="contact-form" action="https://formspree.io/f/aouissifousseni@gmail.com" method="POST">
                     <div class="form-group">
                         <label for="name">Nom complet</label>
                         <input type="text" id="name" name="name" required>
@@ -881,9 +924,27 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="budget">Budget estimé</label>
+                        <select id="budget" name="budget" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="500-1000">500€ - 1000€</option>
+                            <option value="1000-3000">1000€ - 3000€</option>
+                            <option value="3000+">Plus de 3000€</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="message">Votre message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
+                    
+                    <!-- Champs cachés pour Formspree -->
+                    <input type="hidden" name="_replyto" value="aouissifousseni@gmail.com">
+                    <input type="hidden" name="_subject" value="Nouveau message depuis SATISFETE">
+                    <input type="hidden" name="_language" value="fr">
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <div id="form-messages"></div>
+                    
                     <button type="submit" class="submit-btn">Envoyer la demande</button>
                 </form>
             </div>
@@ -966,15 +1027,23 @@
                 <div class="footer-column">
                     <h3>Services</h3>
                     <div class="footer-links">
-                        <a href="#">Gestion complète A à Z</a>
-                        <a href="#">Location de mobilier</a>
-                        <a href="#">Décoration événementielle</a>
-                        <a href="#">Éclairage & ambiance</a>
+                        <a href="#services">Gestion complète A à Z</a>
+                        <a href="#services">Location de mobilier</a>
+                        <a href="#services">Décoration événementielle</a>
+                        <a href="#services">Éclairage & ambiance</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Légal</h3>
+                    <div class="footer-links">
+                        <a href="cgv.html">Conditions Générales de Vente</a>
+                        <a href="#">Mentions Légales</a>
+                        <a href="#">Politique de Confidentialité</a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Avenue des Événements, Paris</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 61 rue Camille Guillaume, 91270 Vigneux-sur-Seine</p>
                     <p><i class="fas fa-envelope"></i> contact@satisfete.com</p>
                 </div>
             </div>
@@ -1043,14 +1112,50 @@
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Form submission
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('Merci pour votre message ! Nous vous contacterons très rapidement.');
-                contactForm.reset();
-            });
+        // Gestion du formulaire avec Formspree
+        document.querySelector('.contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            // Afficher "Envoi en cours..."
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    form.reset();
+                    showFormMessage('Message envoyé avec succès !', 'success');
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
+                }
+            } catch (error) {
+                showFormMessage('Une erreur est survenue. Veuillez réessayer.', 'error');
+                console.error(error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        function showFormMessage(message, type) {
+            const messageDiv = document.getElementById('form-messages');
+            messageDiv.textContent = message;
+            messageDiv.className = type; // 'success' ou 'error'
+            messageDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
         }
 
         // Video play on click
