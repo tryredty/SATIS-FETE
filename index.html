@@ -49,31 +49,27 @@
 
         /* Header */
         header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 40px; /* Padding réduit en haut pour compenser la taille du logo */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    background-color: rgba(253, 241, 241, 0.98);
-    transition: var(--transition);
-}
-
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(253, 241, 241, 0.98);
+            transition: var(--transition);
+        }
 
         header.scrolled {
             padding: 15px 40px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-
-
         header.scrolled .logo img {
-    height: 100px; /* Taille légèrement réduite quand le header est scrollé */
-}
-
+            height: 100px;
+        }
 
         .logo {
             font-size: 1.8rem;
@@ -82,9 +78,9 @@
         }
 
         .logo img {
-    height: 105px; /* Taille augmentée de 50px à 70px */
-    transition: var(--transition);
-}
+            height: 105px;
+            transition: var(--transition);
+        }
 
         .main-nav {
             display: flex;
@@ -553,24 +549,37 @@
             box-shadow: 0 5px 15px rgba(255, 90, 164, 0.3);
         }
 
-        /* Messages du formulaire */
-        #form-messages {
-            display: none;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 4px;
+        /* Catalogue Section */
+        .catalogue-section {
+            background-color: white;
         }
 
-        #form-messages.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+        .catalogue-preview {
+            position: relative;
+            display: inline-block;
+            transition: var(--transition);
         }
 
-        #form-messages.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+        .catalogue-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .catalogue-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 90, 164, 0.1);
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 5px;
+        }
+
+        .catalogue-preview:hover::before {
+            opacity: 1;
         }
 
         /* Footer */
@@ -704,14 +713,11 @@
                 width: 180px;
                 height: 180px;
             }
-        }
 
-        /* Dans la partie mobile (media queries) */
-@media (max-width: 768px) {
-    .logo img {
-        height: 60px; /* Taille légèrement réduite sur mobile */
-    }
-}
+            .logo img {
+                height: 60px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -808,7 +814,6 @@
                     <h3>Décoration Événementielle</h3>
                     <p>Création d'ambiances uniques avec des décors sur mesure.</p>
                 </div>
-              
             </div>
         </div>
     </section>
@@ -987,6 +992,24 @@
                         <p>Nos devis sont établis après une analyse détaillée de vos besoins. Nous tenons compte du type d'événement, du nombre d'invités, des prestations requises, de la localisation et de vos préférences spécifiques. Un devis personnalisé vous est ensuite envoyé sans engagement.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue Section -->
+    <section class="section catalogue-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Catalogue</h2>
+            </div>
+            <div class="catalogue-content" style="text-align: center;">
+                <p style="margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    Découvrez notre sélection exclusive de services et de décors dans notre catalogue. Téléchargez-le gratuitement pour vous inspirer et visualiser nos réalisations.
+                </p>
+               
+                <a href="catalogue.pdf" class="cta-button" download style="display: inline-flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-download"></i> Télécharger le catalogue (PDF)
+                </a>
             </div>
         </div>
     </section>
@@ -1178,4 +1201,5 @@
         });
     </script>
 </body>
+</html>
 </html>
