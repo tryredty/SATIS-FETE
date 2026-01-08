@@ -190,14 +190,15 @@
             visibility: visible;
         }
 
-        /* Hero Section - AMÉLIORÉE */
+        /* Hero Section - AMÉLIORÉE avec image de fond */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--lightest-pink) 0%, var(--lightest-pink) 60%, var(--light-pink) 60%, var(--light-pink) 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('imaage1.jpg') center/cover no-repeat;
         }
 
         .hero-content {
@@ -211,15 +212,17 @@
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 20px;
             line-height: 1.2;
-            color: var(--primary-color);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-subtitle {
             font-size: clamp(1rem, 2vw, 1.3rem);
             margin-bottom: 30px;
-            color: var(--text-light);
+            color: white;
             max-width: 500px;
             font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .cta-button {
@@ -544,6 +547,12 @@
             box-shadow: 0 0 0 2px rgba(255, 90, 164, 0.2);
         }
 
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
         .submit-btn {
             background-color: var(--primary-color);
             color: white;
@@ -703,7 +712,8 @@
             }
 
             .hero {
-                background: linear-gradient(135deg, var(--lightest-pink) 0%, var(--lightest-pink) 70%, var(--light-pink) 70%, var(--light-pink) 100%);
+                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                            url('imaage1.jpg') center/cover no-repeat;
             }
         }
 
@@ -729,8 +739,9 @@
                 padding: 30px 20px;
             }
 
-            .hero {
-                background: var(--lightest-pink);
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
             }
         }
 
@@ -768,13 +779,52 @@
                 height: 350px;
             }
         }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .faq-question:focus-visible, .menu-toggle:focus-visible, .close-menu:focus-visible {
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            box-shadow: 0 6px 16px rgba(255, 90, 164, 0.3);
+            transition: var(--transition);
+            z-index: 1002;
+        }
+        .back-to-top.show {
+            display: inline-flex;
+        }
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <a href="#" class="logo">
-            <img src="logo.png" alt="SATISFETE Logo">
+            <img src="logo.png" alt="SATISFETE Logo" decoding="async">
         </a>
         <nav class="main-nav">
             <a href="#home">Accueil</a>
@@ -803,7 +853,7 @@
     </div>
     <div class="overlay"></div>
 
-    <!-- Hero Section - AMÉLIORÉE -->
+    <!-- Hero Section - AMÉLIORÉE avec image de fond -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
@@ -813,6 +863,8 @@
             </div>
         </div>
     </section>
+    
+    <button class="back-to-top" aria-label="Retour en haut">↑</button>
 
     <!-- About Section - AMÉLIORÉE -->
     <section class="section" id="about">
@@ -829,7 +881,7 @@
                 </div>
                 <div class="about-image">
                     <div class="avatar-container">
-                        <img src="image2.jpg" alt="Radia - Fondatrice de SATISFETE" class="avatar">
+                        <img src="image2.jpg" alt="Radia - Fondatrice de SATISFETE" class="avatar" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -877,7 +929,7 @@
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="video-container">
-                        <video class="portfolio-video" loop muted playsinline>
+                        <video class="portfolio-video" loop muted playsinline preload="metadata">
                             <source src="video6.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas les vidéos.
                         </video>
@@ -888,7 +940,7 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="video-container">
-                        <video class="portfolio-video" loop muted playsinline>
+                        <video class="portfolio-video" loop muted playsinline preload="metadata">
                             <source src="video4.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas les vidéos.
                         </video>
@@ -899,7 +951,7 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="video-container">
-                        <video class="portfolio-video" loop muted playsinline>
+                        <video class="portfolio-video" loop muted playsinline preload="metadata">
                             <source src="video7.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas les vidéos.
                         </video>
@@ -926,7 +978,7 @@
                     <div class="contact-details">
                         <div>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>61 rue Camille Guillaume, 91270 Vigneux-sur-Seine</span>
+                            <span>Vigneux-sur-Seine</span>
                         </div>
                         <div>
                             <i class="fas fa-phone"></i>
@@ -940,33 +992,50 @@
                 </div>
                 
                 <form class="contact-form" action="https://usebasin.com/f/60a84ac7c6af" method="POST">
-                    <div class="form-group">
-                        <label for="name">Nom complet</label>
-                        <input type="text" id="name" name="name" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" required autocomplete="name" autocapitalize="words">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required autocomplete="email">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Date de l'événement</label>
+                            <input type="date" id="event-date" name="event-date" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="event-type">Type d'événement</label>
-                        <select id="event-type" name="event-type" required>
-                            <option value="">Sélectionnez...</option>
-                            <option value="mariage">Mariage</option>
-                            <option value="entreprise">Événement d'entreprise</option>
-                            <option value="anniversaire">Anniversaire</option>
-                            <option value="autre">Autre</option>
-                        </select>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-type">Type d'événement</label>
+                            <select id="event-type" name="event-type" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="mariage">Mariage</option>
+                                <option value="entreprise">Événement d'entreprise</option>
+                                <option value="anniversaire">Anniversaire</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget estimé</label>
+                            <select id="budget" name="budget" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="500-1000">500€ - 1000€</option>
+                                <option value="1000-3000">1000€ - 3000€</option>
+                                <option value="3000+">Plus de 3000€</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="budget">Budget estimé</label>
-                        <select id="budget" name="budget" required>
-                            <option value="">Sélectionnez...</option>
-                            <option value="500-1000">500€ - 1000€</option>
-                            <option value="1000-3000">1000€ - 3000€</option>
-                            <option value="3000+">Plus de 3000€</option>
-                        </select>
-                    </div>
+                    
                     <div class="form-group">
                         <label for="message">Votre message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
@@ -978,7 +1047,7 @@
                     <input type="hidden" name="_language" value="fr">
                     <input type="text" name="_gotcha" style="display:none">
                     
-                    <div id="form-messages"></div>
+                    <div id="form-messages" aria-live="polite"></div>
                     
                     <button type="submit" class="submit-btn">Envoyer la demande</button>
                 </form>
@@ -1057,7 +1126,7 @@
                     Découvrez notre sélection exclusive de services et de décors dans notre catalogue. Téléchargez-le gratuitement pour vous inspirer et visualiser nos réalisations.
                 </p>
                
-                <a href="catalogue.pdf" class="cta-button" download style="display: inline-flex; align-items: center; gap: 10px;">
+                <a href="catalogue1.pdf" class="cta-button" download style="display: inline-flex; align-items: center; gap: 10px;">
                     <i class="fas fa-download"></i> Télécharger le catalogue (PDF)
                 </a>
             </div>
@@ -1096,8 +1165,9 @@
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 61 rue Camille Guillaume, 91270 Vigneux-sur-Seine</p>
-                    <p><i class="fas fa-envelope"></i>radia.roger@satisfete.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vigneux-sur-Seine</p>
+                    <p><i class="fas fa-phone"></i> +33 06 13 65 85 37</p>
+                    <p><i class="fas fa-envelope"></i> radia.roger@satisfete.com</p>
                 </div>
             </div>
             <div class="copyright">
@@ -1155,6 +1225,8 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    targetElement.setAttribute('tabindex', '-1');
+                    targetElement.focus({ preventScroll: true });
                 }
             });
         });
@@ -1163,6 +1235,18 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Gestion du formulaire avec Usebasin
@@ -1237,6 +1321,7 @@
 
         // FAQ accordion functionality
         document.querySelectorAll('.faq-question').forEach(question => {
+            question.setAttribute('tabindex', '0');
             question.addEventListener('click', () => {
                 const item = question.parentElement;
                 item.classList.toggle('active');
@@ -1248,7 +1333,26 @@
                     }
                 });
             });
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    question.click();
+                }
+            });
         });
+        
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+
+        // Définir la date minimale du champ date sur aujourd'hui
+        const eventDateInput = document.getElementById('event-date');
+        const today = new Date().toISOString().split('T')[0];
+        eventDateInput.min = today;
     </script>
 </body>
 </html>
